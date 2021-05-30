@@ -1,12 +1,29 @@
-import {mount, shallowMount} from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
-import Header from "@/components/Header.vue";
+import {shallowMount} from '@vue/test-utils'
+import App from '@/App.vue';
 
-describe('Header.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'THE TODO APP'
-    const wrapper = mount(Header, {
-    })
-    expect(wrapper.text()).toMatch(msg)
+let wrapper: any
+
+beforeAll(
+  () => {
+    wrapper = shallowMount(App)
+  }
+)
+
+afterAll(
+  () => {
+    wrapper = null
+  }
+)
+
+describe('App.vue', () => {
+
+  it('Input field is rendered ', () => {
+    const input = wrapper.find('input[type="text"]')
+    expect(input).toBeTruthy()
   })
+
+  it('Renders add task button', () => {
+    expect(wrapper.find('button[type="submit"]')).toBeTruthy()
+  })
+
 })

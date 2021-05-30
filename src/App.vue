@@ -1,30 +1,61 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <Header/>
+  <AddTask/>
+  <ListTask :tasks="tasks"/>
 </template>
 
-<style lang="scss">
+<script>
+import AddTask from './components/AddTask'
+import ListTask from './components/ListTask'
+import Header from './components/Header'
+
+export default {
+  name: 'App',
+  data: () => {
+    return {
+      tasks: [
+        { id: 1, task: 'name is here' },
+        { id: 2, task: 'name is here' },
+        { id: 3, task: 'name is here' },
+        { id: 4, task: 'name is here' }
+      ]
+    }
+  },
+
+  components: {
+    AddTask,
+    ListTask,
+    Header
+  }
+}
+</script>
+
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin-top: 60px;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+h3 {
+  margin: 40px 0 0;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+
 </style>

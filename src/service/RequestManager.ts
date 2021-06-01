@@ -1,18 +1,65 @@
 import axios from 'axios'
+import { environment } from '../environment/environment'
 
-const BASE_URL = process.env.BASE_URL
-
-console.log(BASE_URL)
+axios.defaults.baseURL = environment.API_BASE_URL
 
 export default new class RequestManager {
-  getTask = url => {
+  requestHeaders = {
+    headers: {
+      Accept: '*/*',
+      'Content-Type': 'application/json'
+    }
+  };
+
+  get (base: string) {
     return new Promise((resolve, reject) => {
-      axios.get(`${BASE_URL}${url}/`).then(response => {
+      console.log('URL', `${environment.API_BASE_URL}`, `${base}`)
+      axios.get(base, this.requestHeaders).then((response: any) => {
         resolve(response.data)
-      }).catch(error => {
+      }).catch((error: any) => {
         reject(error)
       })
     })
-  };
+  }
 
+  details (base: string, id: number) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${base}${id}`, this.requestHeaders).then((response: any) => {
+        resolve(response.data)
+      }).catch((error: any) => {
+        reject(error)
+      })
+    })
+  }
+
+  post (base: string, args: any) {
+    console.log(`${environment.API_BASE_URL}`, `${base}`)
+    return new Promise((resolve, reject) => {
+      axios.post(`${base}`, args, this.requestHeaders).then((response: any) => {
+        resolve(response.data)
+      }).catch((error: any) => {
+        reject(error)
+      })
+    })
+  }
+
+  put (base: string, args: any) {
+    return new Promise((resolve, reject) => {
+      axios.put(`${base}${args.id}`, args, this.requestHeaders).then((response: any) => {
+        resolve(response.data)
+      }).catch((error: any) => {
+        reject(error)
+      })
+    })
+  }
+
+  delete (base: string, id: number) {
+    return new Promise((resolve, reject) => {
+      axios.delete(`${base}${id}`, this.requestHeaders).then((response: any) => {
+        resolve(response.data)
+      }).catch((error: any) => {
+        reject(error)
+      })
+    })
+  }
 }()

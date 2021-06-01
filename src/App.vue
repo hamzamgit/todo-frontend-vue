@@ -1,7 +1,7 @@
 <template>
   <Header/>
   <AddTask/>
-  <ListTask :tasks="tasks"/>
+  <ListTask/>
 </template>
 
 <script>
@@ -11,17 +11,6 @@ import Header from './components/Header'
 
 export default {
   name: 'App',
-  data: () => {
-    return {
-      tasks: [
-        { id: 1, task: 'name is here' },
-        { id: 2, task: 'name is here' },
-        { id: 3, task: 'name is here' },
-        { id: 4, task: 'name is here' }
-      ]
-    }
-  },
-
   components: {
     AddTask,
     ListTask,
@@ -32,12 +21,11 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 h3 {

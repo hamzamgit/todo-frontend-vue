@@ -13,7 +13,6 @@ export default new class RequestManager {
 
   get (base: string) {
     return new Promise((resolve, reject) => {
-      console.log('URL', `${environment.API_BASE_URL}`, `${base}`)
       axios.get(base, this.requestHeaders).then((response: any) => {
         resolve(response.data)
       }).catch((error: any) => {
@@ -33,7 +32,6 @@ export default new class RequestManager {
   }
 
   post (base: string, args: any) {
-    console.log(`${environment.API_BASE_URL}`, `${base}`)
     return new Promise((resolve, reject) => {
       axios.post(`${base}`, args, this.requestHeaders).then((response: any) => {
         resolve(response.data)

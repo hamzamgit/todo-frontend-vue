@@ -8,6 +8,7 @@ const store = new Store(
     }
   }
 )
+
 const service = new TaskService()
 service.getTasks().then(
   response => {

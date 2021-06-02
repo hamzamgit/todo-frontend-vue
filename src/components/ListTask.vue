@@ -1,7 +1,7 @@
 <template>
   <div class="tasks-container">
     <template  v-if="tasks.length">
-      <div class="task-list-container" v-for="item in tasks" :key="item.Task">
+      <div class="task-list-container" v-for="item in tasks" :key="item.ID">
         <div class="task-text">
           {{ item.ID }} &nbsp;:&nbsp; {{ item.Task }}
         </div>

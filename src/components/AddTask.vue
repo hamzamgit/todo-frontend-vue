@@ -26,18 +26,11 @@ export default {
           task: this.data.task,
           completed: false
         }
-        console.log(task)
         const service = new TaskService()
         service.createTask(task).then(
           response => {
             console.log(response)
-            this.$store.state.tasks.push(
-              {
-                Task: this.data.task,
-                id: Math.random(),
-                Completed: false
-              }
-            )
+            this.$store.state.tasks.push(response)
             this.data.task = ''
           }, error => {
             console.log(error)
